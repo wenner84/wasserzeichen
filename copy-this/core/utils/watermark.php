@@ -49,7 +49,10 @@ class watermark extends oxDynImgGenerator
 	
 	      	header ( 'content-type: image/jpeg' );
 		$watermark=str_replace("/master/","/watermark/",$sSource);
-	      	imagejpeg ( $rDestination, $watermark , $iQuality );
+	      	if ($this->_isTargetPathValid($watermark))
+	      	{
+	      		imagejpeg ( $rDestination, $watermark , $iQuality );
+	      	}
 	
 	  	imagedestroy ($rDestination);
 	  	imagedestroy ( $rWatermark );	
@@ -95,7 +98,10 @@ class watermark extends oxDynImgGenerator
 	
 	      	header ( 'content-type: image/png' );
 		$watermark=str_replace("/master/","/watermark/",$sSource);
-	      	imagepng ( $rDestination, $watermark );
+	      	if ($this->_isTargetPathValid($watermark))
+	      	{
+	      		imagepng ( $rDestination, $watermark );
+	      	}
 	
 	  	imagedestroy ($rDestination);
 	  	imagedestroy ( $rWatermark );	
